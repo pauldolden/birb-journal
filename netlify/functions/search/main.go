@@ -15,9 +15,10 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	searchTerm := request.QueryStringParameters["query"]
 	searchType := request.QueryStringParameters["type"]
+	page := request.QueryStringParameters["page"]
 
 	tmbdKey := os.Getenv("VITE_TMDB_KEY")
-	path := fmt.Sprint(BASE_URL, "/search/", searchType, "?query=", searchTerm, "&api_key=", tmbdKey)
+	path := fmt.Sprint(BASE_URL, "/search/", searchType, "?query=", searchTerm, "&api_key=", tmbdKey, "&page=", page)
 
 	results, err := fetch(path)
 
