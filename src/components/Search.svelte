@@ -5,7 +5,7 @@
 
   async function handleSearch() {
     try {
-      const response = await api.get(`.netlify/search`, {
+      const response = await api.get(`.netlify/functions/search`, {
         params: {
           query: searchQuery,
           type: searchType
