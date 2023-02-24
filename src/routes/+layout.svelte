@@ -2,4 +2,6 @@
   import "../app.css";
 </script>
 
-<slot />
+<section data-theme="halloween" class="min-h-screen min-w-screen">
+  <slot />
+</section>
