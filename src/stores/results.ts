@@ -5,6 +5,7 @@ import type { Show } from '../interfaces/Shows';
 
 export interface Results {
   nextPage: string;
+  totalPages: number | null;
   results: Movie[] | Show[];
   searchType: SearchTypes;
   error?: string;
@@ -12,6 +13,7 @@ export interface Results {
 
 export const results = writable<Results>({
   nextPage: "1",
+  totalPages: null,
   results: [],
   searchType: SearchTypes.TV,
 });

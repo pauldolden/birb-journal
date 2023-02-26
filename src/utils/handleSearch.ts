@@ -18,6 +18,7 @@ export async function handleSearch(searchQuery: string, searchType: SearchTypes,
 		results.update((currentData) => {
 			const res: Results = {
 				results: [...currentData.results, ...data.results],
+        totalPages: data.total_pages,
 				searchType,
 				nextPage: data.page + 1
 			};

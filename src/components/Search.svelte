@@ -16,10 +16,13 @@
     if (searchQuery !== $app.searchQuery || searchType !== $app.searchType) {
       results.update((results) => {
         results.nextPage = "1";
+        results.totalPages = null,
         results.results = [];
         return results;
       });
     }
+
+    if(Number($results.nextPage) > Number($results.totalPages)) return;
 
     handleSearch(searchQuery, searchType, $results.nextPage);
   }
