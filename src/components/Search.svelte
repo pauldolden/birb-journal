@@ -9,13 +9,18 @@
 
   app.subscribe((value) => {
     searchType = value.searchType;
+    results.update((results) => {
+      results.searchType = value.searchType;
+      results.nextPage = "1";
+      results.results = [];
+      return results;
+    });
   });
 
   app.update((value) => {
     value.searchQuery = searchQuery;
     return value;
   });
-
 </script>
 
 <div class="form-control">
