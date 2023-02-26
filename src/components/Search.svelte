@@ -23,7 +23,7 @@
   });
 </script>
 
-<div class="form-control">
+<div class="form-control self-center mb-3">
   <div class="input-group">
     <input bind:value={searchQuery} type="text" placeholder="Search…" class="input input-bordered" />
     <button class="btn btn-square bg-primary focus:bg-primary-focus" on:click={() => handleSearch(searchQuery, searchType, $results.nextPage)}>
