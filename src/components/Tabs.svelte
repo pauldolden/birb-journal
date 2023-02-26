@@ -9,13 +9,13 @@
     const type = value.url.searchParams.get("type");
     if (type) {
       searchType = type as SearchTypes;
+      app.update((app) => {
+        app.searchType = searchType;
+        return app;
+      });
     }
   });
 
-  app.update((app) => {
-    app.searchType = searchType;
-    return app;
-  });
 
 </script>
 
