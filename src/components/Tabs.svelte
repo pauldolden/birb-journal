@@ -2,12 +2,21 @@
 	import { page } from "$app/stores";
   import { app } from "../stores/app";
 	import { SearchTypes } from "../enums/SearchTypes";
-  const searchType: SearchTypes = $page.url.searchParams.get("type") as SearchTypes || SearchTypes.TV;
+
+  let searchType: SearchTypes = SearchTypes.TV;
+
+  page.subscribe((value) => {
+    const type = value.url.searchParams.get("type");
+    if (type) {
+      searchType = type as SearchTypes;
+    }
+  });
 
   app.update((app) => {
     app.searchType = searchType;
     return app;
   });
+
 </script>
 
 <div class="tabs tabs-boxed justify-center">
