@@ -2,8 +2,9 @@ import { api } from "../config/api"
 import { results } from "../stores/results"
 import type { Results } from "../stores/results"
 import type { AxiosError } from "axios"
+import type { SearchTypes } from "../enums/SearchTypes"
 
-  export async function handleSearch(searchQuery: string, searchType: "movie" | "show" | null, page: string) {
+  export async function handleSearch(searchQuery: string, searchType: SearchTypes, page: string) {
     try {
       const { data } = await api.get(`.netlify/functions/search`, {
         params: {

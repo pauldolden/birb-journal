@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { app } from "../stores/app";
+  import type { SearchTypes } from "../enums/SearchTypes";
   import { results } from "../stores/results"
   import { handleSearch } from "../utils/handleSearch";
 
-  let searchType: string;
+  let searchType: SearchTypes = $app.searchType;
   let searchQuery = "";
 
   app.subscribe((value) => {
