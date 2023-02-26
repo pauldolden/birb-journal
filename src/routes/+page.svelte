@@ -5,7 +5,7 @@
   import { app } from "../stores/app";
 
   onMount(() => {
-    goto(`/search/${$app.searchType}`)
+    goto(`/search?type=${$app.searchType}`)
   });
 </script>
 
