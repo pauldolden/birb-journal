@@ -1,33 +1,55 @@
 <script lang="ts">
-	import { app } from "../stores/app";
-  import type { SearchTypes } from "../enums/SearchTypes";
-  import { results } from "../stores/results"
-  import { handleSearch } from "../utils/handleSearch";
+	import { app } from '../stores/app';
+	import type { SearchTypes } from '../enums/SearchTypes';
+	import { results } from '../stores/results';
+	import { handleSearch } from '../utils/handleSearch';
 
-  let searchType: SearchTypes = $app.searchType;
-  let searchQuery = "";
+	let searchType: SearchTypes = $app.searchType;
+	let searchQuery = '';
 
-  app.subscribe((value) => {
-    searchType = value.searchType;
-    results.update((results) => {
-      results.searchType = value.searchType;
-      results.nextPage = "1";
-      results.results = [];
-      return results;
-    });
-  });
+	app.subscribe((value) => {
+		searchType = value.searchType;
+		if (value.searchQuery !== searchQuery) {
+			searchQuery = value.searchQuery;
+			handleSearch(searchQuery, searchType, $results.nextPage);
+		}
 
-  app.update((value) => {
-    value.searchQuery = searchQuery;
-    return value;
-  });
+		if (value.searchQuery !== searchQuery || value.searchType !== searchType) {
+			results.update((results) => {
+				results.searchType = value.searchType;
+				results.nextPage = '1';
+				results.results = [];
+				return results;
+			});
+		}
+	});
 </script>
 
 <div class="form-control self-center mb-3">
-  <div class="input-group">
-    <input bind:value={searchQuery} type="text" placeholder="Search…" class="input input-bordered" />
-    <button class="btn btn-square bg-primary focus:bg-primary-focus" on:click={() => handleSearch(searchQuery, searchType, $results.nextPage)}>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="black"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-  </div>
+	<div class="input-group">
+		<input
+			bind:value={searchQuery}
+			type="text"
+			placeholder="Search…"
+			class="input input-bordered"
+		/>
+		<button
+			class="btn btn-square bg-primary focus:bg-primary-focus"
+			on:click={() => handleSearch(searchQuery, searchType, $results.nextPage)}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="black"
+				><path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+				/></svg
+			>
+		</button>
+	</div>
 </div>

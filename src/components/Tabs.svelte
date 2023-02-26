@@ -4,7 +4,7 @@
 	import { SearchTypes } from "../enums/SearchTypes";
 
   let searchType: SearchTypes = SearchTypes.TV;
-
+  
   page.subscribe((value) => {
     const type = value.url.searchParams.get("type");
     if (type) {
