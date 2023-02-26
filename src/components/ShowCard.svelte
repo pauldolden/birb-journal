@@ -1,3 +1,9 @@
 <script lang="ts">
-  import { Show } from "../interfaces/Shows";
+  import type { Show } from "../interfaces/Shows";
+
+  export let result: Show;
+  export let poster: string
 </script>
+
+<img src={poster} alt={result.name} />
+

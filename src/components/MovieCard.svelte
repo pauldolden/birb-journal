@@ -1,11 +1,7 @@
 <script lang="ts">
   import type { Movie } from "../interfaces/Movies";
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-  export let data: Movie;  
-
-  const poster = data.poster_path
-    ? `${IMAGE_PATH}${data.poster_path}`
-    : "/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg";
+  export let result: Movie;  
+  export let poster: string;
 </script>
 
 <div class="card w-96 bg-base-100 shadow-xl">

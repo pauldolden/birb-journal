@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { app } from "../stores/app";
   import { results } from "../stores/results"
   import { handleSearch } from "../utils/handleSearch";
 
-  let searchQuery = ""
-  let searchType: "movie" | "show" | null = "movie"
+  let searchType: string;
+  let searchQuery = "";
+
+  app.subscribe((value) => {
+    searchType = value.searchType;
+  });
+
+  app.update((value) => {
+    value.searchQuery = searchQuery;
+    return value;
+  });
+
 </script>
 
 <div class="form-control">
