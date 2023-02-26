@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { Show } from "../interfaces/Shows";
   import type { Movie } from "../interfaces/Movies";
   const IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-  export let data: Movie | Show
+  export let data: Movie;  
 
   const poster = data.poster_path
     ? `${IMAGE_PATH}${data.poster_path}`

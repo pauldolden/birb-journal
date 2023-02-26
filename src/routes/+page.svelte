@@ -1,9 +1,12 @@
 <script lang="ts">
-	import Header from "../components/Header.svelte";
+	import { goto } from "$app/navigation";
+	import { onMount } from "svelte";
 	import Results from "../components/Results.svelte";
-	import Tabs from "../components/Tabs.svelte";
+  import { app } from "../stores/app";
+
+  onMount(() => {
+    goto(`/search/${$app.searchType}`)
+  });
 </script>
 
-<Header />
-<Tabs activeTab="movies" />
 <Results />
