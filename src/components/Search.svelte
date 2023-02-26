@@ -9,16 +9,20 @@
 
 	app.subscribe((value) => {
 		searchType = value.searchType;
-
-		if (value.searchQuery !== searchQuery || value.searchType !== searchType) {
-			results.update((results) => {
-				results.searchType = value.searchType;
-				results.nextPage = '1';
-				results.results = [];
-				return results;
-			});
-		}
 	});
+
+  function search() {
+    // if search query or search type has changes reset params otherwise keep them and fetch next page
+    if (searchQuery !== $app.searchQuery || searchType !== $app.searchType) {
+      results.update((results) => {
+        results.nextPage = "1";
+        results.results = [];
+        return results;
+      });
+    }
+
+    handleSearch(searchQuery, searchType, $results.nextPage);
+  }
 </script>
 
 <div class="form-control self-center mb-3">
@@ -31,7 +35,7 @@
 		/>
 		<button
 			class="btn btn-square bg-primary focus:bg-primary-focus"
-			on:click={() => handleSearch(searchQuery, searchType, $results.nextPage)}
+			on:click={search}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
