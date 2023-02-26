@@ -20,6 +20,6 @@
 </script>
 
 <div class="tabs tabs-boxed justify-center">
-  <a href={`${$page.url.pathname}?type=${SearchTypes.TV}`} class={`tab tab-lg ${ searchType === SearchTypes.TV ? "tab-active" : ""}`}>TV Shows</a> 
-  <a href={`${$page.url.pathname}?type=${SearchTypes.MOVIE}`} class={`tab tab-lg ${ searchType === SearchTypes.MOVIE ? "tab-active" : ""}`}>Movies</a> 
+  <a href={`${$page.url.pathname}?type=${SearchTypes.TV}`} class={`tab tab-lg flex-1 ${ searchType === SearchTypes.TV ? "tab-active" : ""}`}>TV Shows</a> 
+  <a href={`${$page.url.pathname}?type=${SearchTypes.MOVIE}`} class={`tab tab-lg flex-1 ${ searchType === SearchTypes.MOVIE ? "tab-active" : ""}`}>Movies</a> 
 </div>
