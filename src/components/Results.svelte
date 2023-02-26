@@ -7,6 +7,8 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 	{#each searchResults.results as result}
-		<Card {result} />
+    <a href={`/details/${result.id}`}>
+      <Card {result} />
+    </a>
 	{/each}
 </div>
