@@ -9,10 +9,6 @@
 
 	app.subscribe((value) => {
 		searchType = value.searchType;
-		if (value.searchQuery !== searchQuery) {
-			searchQuery = value.searchQuery;
-			handleSearch(searchQuery, searchType, $results.nextPage);
-		}
 
 		if (value.searchQuery !== searchQuery || value.searchType !== searchType) {
 			results.update((results) => {
