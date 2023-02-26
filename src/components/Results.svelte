@@ -8,4 +8,3 @@
 {#each searchResults.results as result}
   <Card {result} />
 {/each}
-

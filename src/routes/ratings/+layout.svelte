@@ -7,5 +7,6 @@
 <div class="flex flex-col">
   <Search />
   <Tabs />
+  <slot />
 </div>
 
