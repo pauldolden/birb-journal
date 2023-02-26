@@ -11,7 +11,7 @@
 		searchType = value.searchType;
 	});
 
-  function search() {
+  export function search() {
     // if search query or search type has changes reset params otherwise keep them and fetch next page
     if (searchQuery !== $app.searchQuery || searchType !== $app.searchType) {
       results.update((results) => {
