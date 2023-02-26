@@ -5,7 +5,7 @@ import type { Show } from '../interfaces/Shows';
 
 export interface Results {
   nextPage: string;
-  results: Movie[] | Show[] | [];
+  results: Movie[] | Show[];
   searchType: SearchTypes;
   error?: string;
 }
