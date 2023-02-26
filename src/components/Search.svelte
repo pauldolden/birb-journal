@@ -22,7 +22,7 @@
       });
     }
 
-    if(Number($results.nextPage) > Number($results.totalPages)) return;
+    if($results.totalPages && Number($results.nextPage) > $results.totalPages) return;
 
     handleSearch(searchQuery, searchType, $results.nextPage);
   }
