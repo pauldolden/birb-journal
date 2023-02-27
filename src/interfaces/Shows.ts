@@ -25,6 +25,6 @@ export interface Show {
 }
 
   export const isShow = (result: Show | Movie): result is Show => {
-    return (result as Show).first_air_date == undefined;
+    return (result as Show).first_air_date !== undefined;
   };
 
