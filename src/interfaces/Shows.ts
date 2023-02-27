@@ -1,3 +1,5 @@
+import type { Movie } from "./Movies";
+
 export interface Shows {
     page:          number;
     results:       Show[];
@@ -21,3 +23,8 @@ export interface Show {
     vote_average:      number;
     vote_count:        number;
 }
+
+  export const isShow = (result: Show | Movie): result is Show => {
+    return (result as Show).first_air_date == undefined;
+  };
+

@@ -6,26 +6,27 @@
 
 	let searchType: SearchTypes = $app.searchType;
 	let searchQuery = '';
+  let page = "1";
+
+  results.subscribe((value) => {
+    page = value.nextPage;
+  });
 
 	app.subscribe((value) => {
 		searchType = value.searchType;
-	});
 
-  export function search() {
-    // if search query or search type has changes reset params otherwise keep them and fetch next page
-    if (searchQuery !== $app.searchQuery || searchType !== $app.searchType) {
+    if(searchQuery !== $results.searchQuery || value.searchType !== $results.searchType) {
       results.update((results) => {
         results.nextPage = "1";
-        results.totalPages = null,
         results.results = [];
+        results.totalPages = null;
+
         return results;
       });
     }
+	});
 
-    if($results.totalPages && Number($results.nextPage) > $results.totalPages) return;
 
-    handleSearch(searchQuery, searchType, $results.nextPage);
-  }
 </script>
 
 <div class="form-control self-center mb-3 px-1 min-w-full">
@@ -38,7 +39,7 @@
 		/>
 		<button
 			class="btn btn-square bg-primary focus:bg-primary-focus"
-			on:click={search}
+			on:click={() => handleSearch(searchQuery, searchType, page)}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

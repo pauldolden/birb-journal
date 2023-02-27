@@ -8,6 +8,7 @@ export interface Results {
   totalPages: number | null;
   results: Movie[] | Show[];
   searchType: SearchTypes;
+  searchQuery: string;
   error?: string;
 }
 
@@ -16,4 +17,5 @@ export const results = writable<Results>({
   totalPages: null,
   results: [],
   searchType: SearchTypes.TV,
+  searchQuery: "",
 });

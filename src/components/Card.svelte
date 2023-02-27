@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Show } from "../interfaces/Shows";
+  import { isShow } from "../interfaces/Shows";
   import type { Movie } from "../interfaces/Movies";
 	import ShowCard from "./ShowCard.svelte";
 	import MovieCard from "./MovieCard.svelte";
@@ -8,12 +9,9 @@
   
   const poster = result.poster_path
     ? `${IMAGE_PATH}${result.poster_path}`
-    : "/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg";
+    : null;
 
 
-  const isShow = (result: Show | Movie): result is Show => {
-    return (result as Show).first_air_date == undefined;
-  };
 </script>
 
 {#if isShow(result)}

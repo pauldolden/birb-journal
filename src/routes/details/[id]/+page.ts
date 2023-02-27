@@ -4,7 +4,7 @@ import { app } from '../../../stores/app';
 import { api } from '../../../config/api';
 import { SearchTypes } from '../../../enums/SearchTypes';
 
-export async function load({ params }: PageLoad | any) {
+export async function load({ params }: PageLoad) {
   const { id } = params;
   let searchType: SearchTypes = SearchTypes.TV;
 
@@ -16,7 +16,7 @@ export async function load({ params }: PageLoad | any) {
     return error(404, 'Not found');
   };
 
-  const { data } = await api.get(`.netlify/functions/details`, {
+  const { data } = await api.get("/details", {
     params: {
       id,
       type: searchType,
@@ -24,7 +24,7 @@ export async function load({ params }: PageLoad | any) {
   });
 
   return {
-    results: data,
+    result: data,
   };
 }
 
