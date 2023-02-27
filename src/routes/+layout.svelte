@@ -4,7 +4,7 @@
 	import Nav from "../components/Nav.svelte";
 </script>
 
-<section data-theme="lofi" class="min-h-screen min-w-screen">
+<section data-theme="lofi" class="min-h-[120vh] min-w-screen">
   <Header />
   <slot />
   <Nav />
