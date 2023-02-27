@@ -17,11 +17,12 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 	searchType := request.QueryStringParameters["type"]
 
 	tmbdKey := os.Getenv("VITE_TMDB_KEY")
-	path := fmt.Sprint(BASE_URL, searchType, "/", id, "&api_key=", tmbdKey)
+	path := fmt.Sprint(BASE_URL, "/", searchType, "/", id, "&api_key=", tmbdKey)
 
 	results, err := fetch(path)
 
 	if err != nil {
+		fmt.Println("1", err)
 		return nil, err
 	}
 
@@ -41,10 +42,13 @@ func fetch(path string) (interface{}, error) {
 	var results interface{}
 
 	resp, err := http.Get(path)
+
 	if err != nil {
 		return results, err
 	}
+
 	defer resp.Body.Close()
+
 	err = json.NewDecoder(resp.Body).Decode(&results)
 
 	if err != nil {
