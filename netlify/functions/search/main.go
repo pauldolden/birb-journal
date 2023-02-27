@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -18,7 +19,7 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 	page := request.QueryStringParameters["page"]
 
 	tmbdKey := os.Getenv("VITE_TMDB_KEY")
-	path := fmt.Sprint(BASE_URL, "/search/", searchType, "?query=", searchTerm, "&api_key=", tmbdKey, "&page=", page)
+	path := fmt.Sprint(BASE_URL, "/search/", searchType, "?query=", url.QueryEscape(searchTerm), "&api_key=", tmbdKey, "&page=", page)
 
 	results, err := fetch(path)
 
