@@ -13,5 +13,3 @@
 </script>
 
 <DetailsCard result={data.result} rating={data.rating} />
-
-
