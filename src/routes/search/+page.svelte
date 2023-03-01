@@ -8,7 +8,11 @@
   results.subscribe((value) => {
     searchResults = value;
   });
+
 </script>
 
-<Results {searchResults} />
+<div class="container pb-[4rem]">
+    <Results {searchResults} />
+</div>
+
 

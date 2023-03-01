@@ -1,21 +1,10 @@
 <script lang="ts">
 	import { app } from '../stores/app';
-	import type { SearchTypes } from '../enums/SearchTypes';
 	import { results } from '../stores/results';
 	import { handleSearch } from '../utils/handleSearch';
 
-	let searchType: SearchTypes = $app.searchType;
-	let searchQuery = '';
-  let page = "1";
-
-  results.subscribe((value) => {
-    page = value.nextPage;
-  });
-
 	app.subscribe((value) => {
-		searchType = value.searchType;
-
-    if(searchQuery !== $results.searchQuery || value.searchType !== $results.searchType) {
+    if(value.searchQuery == $results.searchQuery || value.searchType !== $results.searchType) {
       results.update((results) => {
         results.nextPage = "1";
         results.results = [];
@@ -25,21 +14,19 @@
       });
     }
 	});
-
-
 </script>
 
-<div class="form-control self-center mb-3 px-1 min-w-full">
+<div class="form-control self-center m-2 px-2 min-w-full">
 	<div class="input-group">
 		<input
-			bind:value={searchQuery}
+			bind:value={$app.searchQuery}
 			type="text"
 			placeholder="Search…"
 			class="input input-bordered flex-1"
 		/>
 		<button
 			class="btn btn-square bg-primary focus:bg-primary-focus"
-			on:click={() => handleSearch(searchQuery, searchType, page)}
+			on:click={handleSearch}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
