@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { api } from "../config/api";
-
+	import type { UpdateParams } from "../interfaces/UpdateParms";
 
   export let index: number;
   export let rating: number;
   export let adjustable = true;
-  export let field_name: string | null = null;
+  export let field_name: string;
+  export let updateParmams: UpdateParams
 
   function handleRatingChange() {
     if (adjustable) {
@@ -13,9 +14,8 @@
 
       try {
         api.post("/set-rating", {
-          rating,
-          field_name,
-          rating_id: 1
+          ...updateParmams,
+          [field_name]: rating,
         })
       } catch (error) {
         console.log(error);

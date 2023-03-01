@@ -18,6 +18,17 @@
 
 	const poster = result.poster_path ? `${IMAGE_PATH}${result.poster_path}` : null;
 
+  const updateParams = {
+    tmdb_id: result.id,
+    title,
+    year,
+    poster_path: poster,
+    description: result.overview,
+    n_rating: nRating,
+    m_rating: mRating,
+  }
+
+
 	const arr = new Array(10).fill(0);
 </script>
 
@@ -33,7 +44,7 @@
 				<h3 class="text-2xl font-logo font-bold">N</h3>
 				<div class="flex gap-2">
 					{#each arr as _, i}
-						<Birb index={i} bind:rating={nRating} field_name="n_rating" />
+						<Birb index={i} bind:rating={nRating} field_name="n_rating" updateParams={updateParams} />
 					{/each}
 				</div>
 			</div>
@@ -42,7 +53,7 @@
 					<h3 class="text-2xl font-logo font-bold">M</h3>
 					<div class="flex gap-2">
 						{#each arr as _, i}
-							<Birb index={i} bind:rating={mRating} field_name="m_rating" />
+							<Birb index={i} bind:rating={mRating} field_name="m_rating" updateParams={updateParams} />
 						{/each}
 					</div>
 				</div>
@@ -52,7 +63,7 @@
 					<h3 class="text-2xl font-logo font-bold">A</h3>
 					<div class="flex gap-2">
 						{#each arr as _, i}
-							<Birb index={i} bind:rating={aRating} adjustable={false} />
+							<Birb index={i} bind:rating={aRating} adjustable={false} field_name="" updateParams={updateParams} />
 						{/each}
 					</div>
 				</div>
