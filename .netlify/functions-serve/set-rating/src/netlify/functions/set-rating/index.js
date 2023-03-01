@@ -11797,8 +11797,7 @@ var import_functions = __toESM(require_main(), 1);
 
 // src/config/supabase.ts
 var import_supabase_js = __toESM(require_main7(), 1);
-var import_meta = {};
-var supabase = (0, import_supabase_js.createClient)(import_meta.env.VITE_SUPABASE_URL, import_meta.env.VITE_SUPABASE_TOKEN);
+var supabase = (0, import_supabase_js.createClient)(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_TOKEN);
 
 // netlify/functions/set-rating/index.ts
 var handler = async (event, context) => {
