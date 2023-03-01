@@ -18,22 +18,21 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
 
   const body = JSON.parse(event.body);
 
-  const { rating_id, rating, field_name } = body
+  const { tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched } = body
 
   const { data, error } = await supabase
-  .from('ratings')
-  .select()
-  .eq('id', rating_id)
+  .from('media')
+  .upsert({ tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched })
+  .eq('tmdb_id', tmdb_id)
+  .select('*')
 
   if (error) {
     return { statusCode: 500, body: error.message, headers };
   }
 
-  console.log(data)
-
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "Hello World" }),
+    body: JSON.stringify(data),
     headers,
   };
 };
