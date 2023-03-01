@@ -11813,8 +11813,8 @@ var handler = async (event, context) => {
     return { statusCode: 400, body: "Bad Request", headers };
   }
   const body = JSON.parse(event.body);
-  const { tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched } = body;
-  const { data, error } = await supabase.from("media").upsert({ tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched }).eq("tmdb_id", tmdb_id).select("*");
+  const { tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched, type } = body;
+  const { data, error } = await supabase.from("media").upsert({ tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched, type }, { onConflict: "tmdb_id" }).eq("tmdb_id", tmdb_id).select("*");
   if (error) {
     return { statusCode: 500, body: error.message, headers };
   }

@@ -11787,19 +11787,19 @@ var require_main7 = __commonJS({
   }
 });
 
-// netlify/functions/get-ratings/index.ts
-var get_ratings_exports = {};
-__export(get_ratings_exports, {
+// netlify/functions/search-ratings/index.ts
+var search_ratings_exports = {};
+__export(search_ratings_exports, {
   handler: () => handler
 });
-module.exports = __toCommonJS(get_ratings_exports);
+module.exports = __toCommonJS(search_ratings_exports);
 var import_functions = __toESM(require_main(), 1);
 
 // src/config/supabase.ts
 var import_supabase_js = __toESM(require_main7(), 1);
 var supabase = (0, import_supabase_js.createClient)(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_TOKEN);
 
-// netlify/functions/get-ratings/index.ts
+// netlify/functions/search-ratings/index.ts
 var handler = async (event, context) => {
   var _a, _b;
   const headers = {

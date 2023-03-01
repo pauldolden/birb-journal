@@ -2,30 +2,24 @@ import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { supabase } from "../../../src/config/supabase";
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-
   const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 };
 
-  if (event.httpMethod !== "POST") {
+  if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed", headers };
   }
 
-  if (!event.body) {
+  if (!event.queryStringParameters?.tmdb_id) {
     return { statusCode: 400, body: "Bad Request", headers };
   }
 
-  const body = JSON.parse(event.body);
-
-  const { tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched, type } = body
-
   const { data, error } = await supabase
   .from('media')
-  .upsert({ tmdb_id, title, description, year, poster_path, n_rating, m_rating, watched, type }, { onConflict: 'tmdb_id'})
-  .eq('tmdb_id', tmdb_id)
   .select('*')
+  .eq('tmdb_id', event.queryStringParameters?.tmdb_id)
 
   if (error) {
     return { statusCode: 500, body: error.message, headers };
@@ -33,7 +27,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
 
   return {
     statusCode: 200,
-    body: JSON.stringify(data),
+    body: JSON.stringify(data[0]),
     headers,
   };
 };

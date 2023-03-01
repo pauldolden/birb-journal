@@ -1,7 +1,28 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { app } from '../stores/app';
 	import { results } from '../stores/results';
 	import { handleSearch } from '../utils/handleSearch';
+  import { handleSearchRatings } from '../utils/handleSearchRatings';
+  import { handleSearchWatchlist } from '../utils/handleSearchWatchlist';
+
+	import { page } from "$app/stores";
+
+  let searchFunc: () => void;
+
+  onMount(() => {
+    switch($page.url.pathname) {
+      case '/ratings':
+        searchFunc = handleSearchRatings;
+        break;
+      case '/watchlist':
+        searchFunc = handleSearchWatchlist;
+        break;
+      default:
+        searchFunc = handleSearch;
+        break;
+    }
+  });
 
 	app.subscribe((value) => {
     if(value.searchQuery == $results.searchQuery || value.searchType !== $results.searchType) {
@@ -26,7 +47,7 @@
 		/>
 		<button
 			class="btn btn-square bg-primary focus:bg-primary-focus"
-			on:click={handleSearch}
+			on:click={searchFunc}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
