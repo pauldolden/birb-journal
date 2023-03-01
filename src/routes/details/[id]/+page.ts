@@ -17,7 +17,7 @@ export async function load({ params }: PageLoad) {
   };
 
   const { data } = await api.get("/details", {
-    params: {
+   params: {
       id,
       type: searchType,
     },
