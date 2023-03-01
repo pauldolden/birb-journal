@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = import.meta.env.DEV ? import.meta.env.VITE_SERVICE_URL_DEV : import.meta.env.VITE_SERVICE_URL_PROD;
+const baseUrl = process.env.NODE_ENV !== 'production' ? process.env.VITE_SERVICE_URL_DEV : process.env.VITE_SERVICE_URL_PROD;
 
 export const api = axios.create({
   baseURL: baseUrl + '/.netlify/functions/',
