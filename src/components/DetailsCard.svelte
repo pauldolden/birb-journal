@@ -2,6 +2,7 @@
 	import { isShow, type Show } from '../interfaces/Shows';
 	import type { Movie } from '../interfaces/Movies';
 	import Birb from './Birb.svelte';
+	import type { UpdateParams } from '../interfaces/UpdateParms';
 
 	export let result: Show | Movie;
 
@@ -18,11 +19,11 @@
 
 	const poster = result.poster_path ? `${IMAGE_PATH}${result.poster_path}` : null;
 
-  const updateParams = {
+  const updateParams: UpdateParams = {
     tmdb_id: result.id,
     title,
     year,
-    poster_path: poster,
+    poster_path: poster as string,
     description: result.overview,
     n_rating: nRating,
     m_rating: mRating,

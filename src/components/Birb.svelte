@@ -6,7 +6,7 @@
   export let rating: number;
   export let adjustable = true;
   export let field_name: string;
-  export let updateParmams: UpdateParams
+  export let updateParams: UpdateParams
 
   function handleRatingChange() {
     if (adjustable) {
@@ -14,7 +14,7 @@
 
       try {
         api.post("/set-rating", {
-          ...updateParmams,
+          ...updateParams,
           [field_name]: rating,
         })
       } catch (error) {
