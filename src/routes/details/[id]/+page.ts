@@ -31,7 +31,7 @@ export async function load({ params }: PageLoad) {
 
   return {
     result: details.data,
-    ratings: ratings.data[0]
+    ratings: ratings.data
   };
 }
 
