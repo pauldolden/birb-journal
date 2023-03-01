@@ -2,6 +2,7 @@ import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { supabase } from "../../../src/config/supabase";
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+
   const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',

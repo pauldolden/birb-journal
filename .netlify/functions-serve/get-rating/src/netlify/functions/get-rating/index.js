@@ -11807,7 +11807,7 @@ var handler = async (event, context) => {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
   };
-  if (event.httpMethod !== "get") {
+  if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed", headers };
   }
   if (!((_a = event.queryStringParameters) == null ? void 0 : _a.tmdb_id)) {

@@ -16,15 +16,22 @@ export async function load({ params }: PageLoad) {
     return error(404, 'Not found');
   };
 
-  const { data } = await api.get("/details", {
+  const details = await api.get("/details", {
    params: {
       id,
       type: searchType,
     },
   });
 
+  const ratings = await api.get("/get-rating", {
+    params: {
+      tmdb_id: id,
+    }
+  })
+
   return {
-    result: data,
+    result: details.data,
+    ratings: ratings.data
   };
 }
 

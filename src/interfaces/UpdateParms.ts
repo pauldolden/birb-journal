@@ -1,4 +1,5 @@
 export interface UpdateParams {
+  id: number
   tmdb_id: number
   title: string
   year: number

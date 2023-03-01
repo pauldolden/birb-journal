@@ -3,11 +3,13 @@
 	import type { Movie } from '../interfaces/Movies';
 	import Birb from './Birb.svelte';
 	import type { UpdateParams } from '../interfaces/UpdateParms';
+	import type { Rating } from '../interfaces/Rating';
 
 	export let result: Show | Movie;
+  export let rating: Rating
 
-  let nRating = 2
-  let mRating = 9
+  let nRating = rating?.n_rating ?? 0
+  let mRating = rating?.m_rating ?? 0
   $: aRating = Math.floor((nRating + mRating) / 2)
 
 	const title = isShow(result) ? result.name : result.title;
@@ -20,6 +22,7 @@
 	const poster = result.poster_path ? `${IMAGE_PATH}${result.poster_path}` : null;
 
   const updateParams: UpdateParams = {
+    id: rating.id,
     tmdb_id: result.id,
     title,
     year,

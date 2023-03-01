@@ -8,7 +8,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 };
 
-  if (event.httpMethod !== "get") {
+  if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed", headers };
   }
 
