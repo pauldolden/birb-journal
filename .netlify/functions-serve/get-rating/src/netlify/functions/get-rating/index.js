@@ -11800,7 +11800,7 @@ var import_supabase_js = __toESM(require_main7(), 1);
 var supabase = (0, import_supabase_js.createClient)(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_TOKEN);
 
 // netlify/functions/get-rating/index.ts
-var handler = async (event, context) => {
+var handler = async (event) => {
   var _a, _b;
   const headers = {
     "Access-Control-Allow-Origin": "*",

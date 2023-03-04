@@ -5,29 +5,22 @@ import { results } from '../stores/results';
 import type { Results } from '../stores/results';
 import type { AxiosError } from 'axios';
 
-export async function handleSearchRatings() {
+export async function getRatings() {
   const  $app = get(app);
 
-  const $results = get(results);
-
-  const nextPage = $app.searchQuery === $results.searchQuery && $app.searchType === $results.searchType ? $results.nextPage : 1;
-   
 	try {
-		const { data } = await api.get("/search-ratings", {
+		const { data } = await api.get("/get-ratings", {
 			params: {
-				query: $app.searchQuery,
 				type: $app.searchType,
       }
 		});
 
 		results.update((currentData) => {
 			const res: Results = {
-				results: [...currentData.results, ...data.results],
-        totalPages: data.total_pages,
+        ...currentData,
+				results: [...currentData.results, ...data],
 				searchType: $app.searchType,
-        searchQuery: $app.searchQuery,
-				nextPage: data.page + 1
-			};
+	 		};
 			return res;
 		});
 	} catch (error: unknown) {

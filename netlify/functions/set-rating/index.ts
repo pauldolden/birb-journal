@@ -1,7 +1,7 @@
-import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import { Handler, HandlerEvent } from "@netlify/functions";
 import { supabase } from "../../../src/config/supabase";
 
-const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+const handler: Handler = async (event: HandlerEvent) => {
 
   const headers = {
   'Access-Control-Allow-Origin': '*',

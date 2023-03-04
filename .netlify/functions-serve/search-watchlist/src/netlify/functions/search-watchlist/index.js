@@ -11800,7 +11800,7 @@ var import_supabase_js = __toESM(require_main7(), 1);
 var supabase = (0, import_supabase_js.createClient)(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_TOKEN);
 
 // netlify/functions/search-watchlist/index.ts
-var handler = async (event, context) => {
+var handler = async (event) => {
   var _a, _b;
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -11810,10 +11810,10 @@ var handler = async (event, context) => {
   if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed", headers };
   }
-  if (!((_a = event.queryStringParameters) == null ? void 0 : _a.tmdb_id)) {
+  if (!((_a = event.queryStringParameters) == null ? void 0 : _a.query)) {
     return { statusCode: 400, body: "Bad Request", headers };
   }
-  const { data, error } = await supabase.from("media").select("*").eq("tmdb_id", (_b = event.queryStringParameters) == null ? void 0 : _b.tmdb_id);
+  const { data, error } = await supabase.from("media").select("*").eq("title", (_b = event.queryStringParameters) == null ? void 0 : _b.query);
   if (error) {
     return { statusCode: 500, body: error.message, headers };
   }

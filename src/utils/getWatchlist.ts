@@ -5,7 +5,7 @@ import { results } from '../stores/results';
 import type { Results } from '../stores/results';
 import type { AxiosError } from 'axios';
 
-export async function handleSearchRatings() {
+export async function getWatchlist() {
   const  $app = get(app);
 
   const $results = get(results);
@@ -13,9 +13,8 @@ export async function handleSearchRatings() {
   const nextPage = $app.searchQuery === $results.searchQuery && $app.searchType === $results.searchType ? $results.nextPage : 1;
    
 	try {
-		const { data } = await api.get("/search-ratings", {
+		const { data } = await api.get("/get-watchlist", {
 			params: {
-				query: $app.searchQuery,
 				type: $app.searchType,
       }
 		});
@@ -26,7 +25,7 @@ export async function handleSearchRatings() {
         totalPages: data.total_pages,
 				searchType: $app.searchType,
         searchQuery: $app.searchQuery,
-				nextPage: data.page + 1
+				nextPage: data?.page + 1 ?? null
 			};
 			return res;
 		});

@@ -1,7 +1,7 @@
-import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import { Handler, HandlerEvent } from "@netlify/functions";
 import { supabase } from "../../../src/config/supabase";
 
-const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+const handler: Handler = async (event: HandlerEvent) => {
   const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -12,14 +12,15 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return { statusCode: 405, body: "Method Not Allowed", headers };
   }
 
-  if (!event.queryStringParameters?.tmdb_id) {
+  if (!event.queryStringParameters?.type) {
     return { statusCode: 400, body: "Bad Request", headers };
   }
 
   const { data, error } = await supabase
   .from('media')
   .select('*')
-  .eq('tmdb_id', event.queryStringParameters?.tmdb_id)
+  .eq('type', event.queryStringParameters?.type)
+  .eq('watched', false)
 
   if (error) {
     return { statusCode: 500, body: error.message, headers };
