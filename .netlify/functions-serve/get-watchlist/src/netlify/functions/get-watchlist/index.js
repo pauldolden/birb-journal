@@ -11819,7 +11819,7 @@ var handler = async (event) => {
   }
   return {
     statusCode: 200,
-    body: JSON.stringify(data[0]),
+    body: JSON.stringify(data),
     headers
   };
 };

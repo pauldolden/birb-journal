@@ -8,10 +8,6 @@ import type { AxiosError } from 'axios';
 export async function getWatchlist() {
   const  $app = get(app);
 
-  const $results = get(results);
-
-  const nextPage = $app.searchQuery === $results.searchQuery && $app.searchType === $results.searchType ? $results.nextPage : 1;
-   
 	try {
 		const { data } = await api.get("/get-watchlist", {
 			params: {
@@ -21,11 +17,9 @@ export async function getWatchlist() {
 
 		results.update((currentData) => {
 			const res: Results = {
-				results: [...currentData.results, ...data.results],
-        totalPages: data.total_pages,
+        ...currentData,
+				results: [...currentData.results, ...data],
 				searchType: $app.searchType,
-        searchQuery: $app.searchQuery,
-				nextPage: data?.page + 1 ?? null
 			};
 			return res;
 		});
